@@ -14,7 +14,7 @@
   --accent-color: #2196f3;
   --white-color: #ffffff;
   --second-white-color: #f5f4fa;
-  --timing-function:cubic-bezier(0.4, 0, 0.2, 1);
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -235,6 +235,7 @@ ul {
 }
 .link.post {
   color: inherit;
+  transition: box-shadow 250ms var(--timing-function);
 }
 
 .list.post .item:hover {
@@ -276,11 +277,11 @@ ul {
 /* Нижние подчеркивание текущей страницы*/
 
 .link.current:after {
-  content:"";
+  content: '';
 
   position: absolute;
-  left:0;
-  bottom:0;
+  left: 0;
+  bottom: 0;
 
   display: block;
   width: 100%;
@@ -295,11 +296,11 @@ ul {
   position: relative;
 }
 .link.next::after {
-  content:"";
+  content: '';
 
   position: absolute;
-  left:0;
-  bottom:0;
+  left: 0;
+  bottom: 0;
 
   display: block;
   width: 100%;
@@ -434,7 +435,7 @@ ul {
   font-family: inherit;
   border-radius: 4px;
   /*анимация кнопки*/
-  transition:background-color 250ms var(--timing-function);
+  transition: background-color 250ms var(--timing-function);
 }
 .button:hover,
 .button:focus {
@@ -460,8 +461,7 @@ ul {
   padding: 10px 32px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   /*анимация кнопки*/
-  transition:background-color 250ms var(--timing-function),
-             color 250ms var(--timing-function);
+  transition: background-color 250ms var(--timing-function);
 }
 .button.primary:hover,
 .button.primary:focus {
@@ -627,8 +627,7 @@ ul {
   color: #afb1b8;
   background-color: var(--white-color);
 
-  transition:background-color 250ms var(--timing-function),
-             color 250ms var(--timing-function);
+  transition: background-color 250ms var(--timing-function), color 250ms var(--timing-function);
 }
 
 .social-icon {
@@ -660,8 +659,7 @@ ul {
 
   color: #afb1b8;
 
-  transition:color 250ms var(--timing-function),
-             border-color 250ms var(--timing-function) ;
+  transition: color 250ms var(--timing-function), border-color 250ms var(--timing-function);
 }
 .link.clients:hover {
   border-color: #2196f3;
@@ -700,7 +698,7 @@ ul {
 
   border-radius: 50%;
 
-  transition:background-color 250ms var(--timing-function);
+  transition: background-color 250ms var(--timing-function);
 }
 
 .social-link-footer.link:hover,
@@ -713,53 +711,33 @@ ul {
 ================================*/
 
 /*Добавление на карточку наших работ текста при hover*/
-.post-image::before {
-  content: '';
-  position: absolute;
-  align-items: center;
-  display: inline-block;
 
-  min-width: 370px;
-  min-height: 294px;
-
-  opacity: 0;
-}
-
-.link.post:hover ::before,
-.link.post:focus ::before{
-  opacity: 1;
-  transition: 250ms opacity linear;
-  background-color: rgba(33, 150, 243, 0.9);
-}
-
-.link.post:hover .post-text,
-.link.post:focus .post-text{
-  opacity: 1;
-  transition: 250ms opacity linear;
-  cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.item.post {
-  position: relative;
-}
-.post-image {
+.post-image-thumb {
   position: relative;
   overflow: hidden;
 }
-.post-text {
-  display: inline-block;
+
+.card-overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  bottom: 100%;
+  top: 0;
+  left: 0;
 
-  min-width: 322px;
-  min-height: 168px;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
 
-  padding-left: 24px;
+  font-size: 18px;
+  line-height: 1.55;
 
-  opacity: 0;
+  color: #ffffff;
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+}
+.link.post:hover .card-overlay,
+.link.post:focus .card-overlay {
+  transform: translateY(0%);
 }
 /*========================
 Модальное окно===========*/
@@ -768,24 +746,56 @@ ul {
   position: fixed;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
+
   z-index: 1;
 
   background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+  transition: opacity 550ms var(--timing-function);
 }
 
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
-
+.backdrop.is-hidden .modal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 
   min-width: 528px;
   min-height: 581px;
 
   background-color: var(--white-color);
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 550ms var(--timing-function);
+}
+
+.button-closed {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
