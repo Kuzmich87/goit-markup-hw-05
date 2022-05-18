@@ -763,7 +763,6 @@ ul {
   visibility: hidden;
 }
 .backdrop.is-hidden .modal {
-  opacity: 0;
   transform: translate(-50%, -50%) scale(0.5);
 }
 .modal {
@@ -771,8 +770,8 @@ ul {
   top: 50%;
   left: 50%;
 
-  min-width: 528px;
-  min-height: 581px;
+  width: 528px;
+  height: 581px;
 
   background-color: var(--white-color);
 
@@ -781,6 +780,7 @@ ul {
   border-radius: 4px;
 
   transform: translate(-50%, -50%) scale(1);
+
   transition: transform 550ms var(--timing-function);
 }
 
