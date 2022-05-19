@@ -754,7 +754,7 @@ ul {
   background-color: rgba(0, 0, 0, 0.2);
 
   opacity: 1;
-  transition: opacity 550ms var(--timing-function);
+  transition: opacity 250ms var(--timing-function);
 }
 
 .backdrop.is-hidden {
@@ -781,7 +781,7 @@ ul {
 
   transform: translate(-50%, -50%) scale(1);
 
-  transition: transform 550ms var(--timing-function);
+  transition: 250ms var(--timing-function);
 }
 
 .button-closed {
